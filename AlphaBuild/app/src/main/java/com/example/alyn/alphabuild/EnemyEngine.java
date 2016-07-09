@@ -1,6 +1,8 @@
 package com.example.alyn.alphabuild;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,27 +18,41 @@ public class EnemyEngine {
     }
 
 
-    public EnemyEngine(Context context, int screensizex, int screensizey){
+    public EnemyEngine(Context context, int screensizex, int screensizey)
+    {
         enemyList = new ArrayList<EnemyShip>();
         enemyList.add(new EnemyShip(context, screensizex, screensizey));
         enemyList.add(new EnemyShip(context, screensizex, screensizey));
         enemyList.add(new EnemyShip(context, screensizex, screensizey));
-        if(screensizex > 1000){
+
+        if(screensizex > 1000)
+        {
             enemyList.add(new EnemyShip(context, screensizex, screensizey));
         }
 
-        if(screensizex > 1200){
+        if(screensizex > 1200)
+        {
             enemyList.add(new EnemyShip(context, screensizex, screensizey));
         }
     }
 
-    public void update(Context context, int screensizex, int screensizey, int playerspeed){
-        for (int i = 0; i < enemyList.size(); i++) {
+    public void update(Context context, int screensizex, int screensizey, int playerspeed)
+    {
+        for (int i = 0; i < enemyList.size(); i++)
+        {
             enemyList.get(i).update(playerspeed);
-            if (!enemyList.get(i).getActive()) {
+            if (!enemyList.get(i).getActive())
+            {
                 enemyList.remove(i);
                 enemyList.add(new EnemyShip(context, screensizex, screensizey));
             }
+        }
+    }
+    public void draw(Canvas canvas, Paint paint)
+    {
+        for (int i = 0; i < enemyList.size(); i++)
+        {
+            canvas.drawBitmap(enemyList.get(i).getBitmap(), enemyList.get(i).getX(),enemyList.get(i).getY(), paint);
         }
     }
 }

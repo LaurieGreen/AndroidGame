@@ -6,6 +6,8 @@ package com.example.alyn.alphabuild;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class PlayerShip {
@@ -99,6 +101,10 @@ public class PlayerShip {
         hitBox.right = x + bitmap.getWidth();
         hitBox.bottom = y + bitmap.getHeight();
 
+    }
+
+    public void draw(Canvas canvas, Paint paint){
+        canvas.drawBitmap(bitmap, x, y, paint);
     }
 
     public void setBoosting() {

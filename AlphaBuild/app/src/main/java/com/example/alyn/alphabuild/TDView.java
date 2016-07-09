@@ -190,12 +190,9 @@ public class TDView extends SurfaceView implements Runnable {
             }
         }
 
+        //update player and enemies
         mEnemyEngine.update(context, screenX, screenY, player.getSpeed());
-
-        // Update the player
         player.update();
-
-
 
         for (int i = 0; i < dustList.size(); i++)
         {
@@ -242,8 +239,6 @@ public class TDView extends SurfaceView implements Runnable {
         {
             boostisplaying = false;
         }
-
-
     }
 
     private void draw()
@@ -256,10 +251,6 @@ public class TDView extends SurfaceView implements Runnable {
 
             // Rub out the last frame
             canvas.drawColor(Color.argb(255, 0, 0, 0));
-
-            // For debugging
-            // Switch to white pixels
-            paint.setColor(Color.argb(255, 255, 255, 255));
             // Draw Hit boxes
             //canvas.drawRect(player.getHitbox().left, player.getHitbox().top, player.getHitbox().right, player.getHitbox().bottom, paint);
             //canvas.drawRect(enemy1.getHitbox().left, enemy1.getHitbox().top, enemy1.getHitbox().right, enemy1.getHitbox().bottom, paint);
@@ -280,13 +271,10 @@ public class TDView extends SurfaceView implements Runnable {
 
             if(!gameEnded)
             {
-                // Draw the player
-                canvas.drawBitmap(player.getBitmap(), player.getX(), player.getY(), paint);
+                // Draw the player and enemies
+                mEnemyEngine.draw(canvas, paint);
+                player.draw(canvas, paint);
 
-                for (int i = 0; i < mEnemyEngine.enemyList.size(); i++)
-                {
-                    canvas.drawBitmap(mEnemyEngine.enemyList.get(i).getBitmap(), mEnemyEngine.enemyList.get(i).getX(), mEnemyEngine.enemyList.get(i).getY(), paint);
-                }
                 // Draw the hud
                 paint.setTextAlign(Paint.Align.LEFT);
                 paint.setColor(Color.argb(255, 255, 255, 255));
