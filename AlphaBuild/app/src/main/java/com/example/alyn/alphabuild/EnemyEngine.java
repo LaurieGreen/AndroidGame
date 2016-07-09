@@ -30,9 +30,9 @@ public class EnemyEngine {
         }
     }
 
-    public void update(Context context, int screensizex, int screensizey){
+    public void update(Context context, int screensizex, int screensizey, int playerspeed){
         for (int i = 0; i < enemyList.size(); i++) {
-            enemyList.get(i).update();
+            enemyList.get(i).update(playerspeed);
             if (!enemyList.get(i).getActive()) {
                 enemyList.remove(i);
                 enemyList.add(new EnemyShip(context, screensizex, screensizey));
