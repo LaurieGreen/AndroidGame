@@ -40,7 +40,7 @@ public class SoundManager {
         this.soundPool.stop(streamid);
     }
     public int playSound(String sound){
-
+        // TODO add some methods for stopping sound?
         switch (sound){
 
             case "start":

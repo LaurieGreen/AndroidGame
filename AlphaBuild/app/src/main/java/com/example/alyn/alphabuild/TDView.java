@@ -190,7 +190,7 @@ public class TDView extends SurfaceView implements Runnable {
             }
         }
 
-        mEnemyEngine.update(context, screenX, screenY);
+        mEnemyEngine.update(context, screenX, screenY, player.getSpeed());
 
         // Update the player
         player.update();

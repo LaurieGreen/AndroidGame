@@ -65,7 +65,8 @@ public class EnemyShip{
 
     }
 
-    public void update() {
+    public void update(int playerspeed) {
+        x -= playerspeed;
         x -= speed;
 
         //respawn when off screen
