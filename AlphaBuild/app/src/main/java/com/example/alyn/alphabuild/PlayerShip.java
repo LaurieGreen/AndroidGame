@@ -12,6 +12,7 @@ import android.graphics.Rect;
 
 public class PlayerShip {
     private Bitmap bitmap;
+    private SpriteSheetManager mSpriteSheetManager;
     private int x, y;
     private int speed;
 
@@ -53,6 +54,7 @@ public class PlayerShip {
 
     // Constructor
     public PlayerShip(Context context, int screenX, int screenY) {
+
         boosting = false;
         x = 50;
         y = 50;
@@ -63,6 +65,7 @@ public class PlayerShip {
 
         maxY = screenY - bitmap.getHeight();
         minY = 0;
+        mSpriteSheetManager = new SpriteSheetManager(context, x, y, 8, 200, 100);
 
         // Initialize the hit box
         hitBox = new Rect(x, y, bitmap.getWidth(), bitmap.getHeight());
@@ -104,7 +107,8 @@ public class PlayerShip {
     }
 
     public void draw(Canvas canvas, Paint paint){
-        canvas.drawBitmap(bitmap, x, y, paint);
+        //canvas.drawBitmap(bitmap, x, y, paint);
+        mSpriteSheetManager.draw(canvas, paint, x, y);
     }
 
     public void setBoosting() {
