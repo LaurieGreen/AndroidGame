@@ -11,7 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class PlayerShip {
-    private Bitmap bitmap;
+    private Bitmap spriteSheet;
     private SpriteSheetManager mSpriteSheetManager;
     private int x, y;
     private int speed;
@@ -61,14 +61,16 @@ public class PlayerShip {
 
         shieldStrength = 10;
         speed = 1;
-        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ship1);
 
-        maxY = screenY - bitmap.getHeight();
+        //this should be the spritesheet as a whole, we pass it to the spritesheet manager and it passes back a frame at draw time
+        spriteSheet = BitmapFactory.decodeResource(context.getResources(), R.drawable.ship2);
+
+        maxY = screenY - spriteSheet.getHeight();
         minY = 0;
-        mSpriteSheetManager = new SpriteSheetManager(context, x, y, 8, 200, 100);
+        mSpriteSheetManager = new SpriteSheetManager(context, x, y, 8, 200, 100, spriteSheet );
 
         // Initialize the hit box
-        hitBox = new Rect(x, y, bitmap.getWidth(), bitmap.getHeight());
+        hitBox = new Rect(x, y, spriteSheet.getWidth(), spriteSheet.getHeight());
 
     }
 
@@ -110,8 +112,8 @@ public class PlayerShip {
         // Refresh hit box location
         hitBox.left = x;
         hitBox.top = y;
-        hitBox.right = x + bitmap.getWidth();
-        hitBox.bottom = y + bitmap.getHeight();
+        hitBox.right = x + spriteSheet.getWidth();
+        hitBox.bottom = y + spriteSheet.getHeight();
 
         //update the animation manager to get updated frames and rect
         //pass in players location
@@ -144,9 +146,9 @@ public class PlayerShip {
     }
 
     //Getters
-    public Bitmap getBitmap()
+    public Bitmap getSpriteSheet()
     {
-        return bitmap;
+        return spriteSheet;
     }
 
     public int getSpeed()

@@ -50,7 +50,7 @@ public class SpriteSheetManager {
         return frameToDraw;
     }
 
-    public SpriteSheetManager(Context context, int positionx, int positiony, int frameCount, int frameWidth, int frameHeight) {
+    public SpriteSheetManager(Context context, int positionx, int positiony, int frameCount, int frameWidth, int frameHeight, Bitmap spriteSheet) {
         this.frameCount = frameCount;
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
@@ -69,7 +69,6 @@ public class SpriteSheetManager {
                 positionx + frameWidth,
                 frameHeight + positiony);
 
-        spriteSheet = BitmapFactory.decodeResource(context.getResources(), R.drawable.ship2);
         bitmap = Bitmap.createScaledBitmap(spriteSheet,
                 frameWidth * frameCount,
                 frameHeight,
