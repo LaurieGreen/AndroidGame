@@ -197,14 +197,14 @@ public class TDView extends SurfaceView implements Runnable {
 
                 //How long has the mPlayer been flying
                 timeTaken = System.currentTimeMillis() - timeStarted;
-                Log.d("volume", "" + mBoostVolume);
+                //Log.d("volume", "" + mBoostVolume);
                 if (mPlayer.isBoosting() && !boostisplaying)
                 {
                     mBoostVolume = 1;
                     if (firstboost)
                     {
                         sm.playBoost();
-                        Log.d("volume", "boost played");
+                        //Log.d("volume", "boost played");
                         firstboost = false;
                     }
                     boostisplaying = true;
