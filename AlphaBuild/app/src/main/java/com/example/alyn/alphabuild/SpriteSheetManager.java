@@ -14,7 +14,6 @@ import android.util.Log;
  */
 public class SpriteSheetManager {
 
-
     // How many frames are there on the sprite sheet?
     private int frameCount;
 
@@ -39,6 +38,18 @@ public class SpriteSheetManager {
     // sprite sheet that represents 1 frame
     private Rect frameToDraw;
 
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public RectF getWhereToDraw() {
+        return whereToDraw;
+    }
+
+    public Rect getFrameToDraw() {
+        return frameToDraw;
+    }
+
     public SpriteSheetManager(Context context, int positionx, int positiony, int frameCount, int frameWidth, int frameHeight) {
         this.frameCount = frameCount;
         this.frameWidth = frameWidth;
@@ -56,7 +67,7 @@ public class SpriteSheetManager {
                 positionx,
                 positiony,
                 positionx + frameWidth,
-                frameHeight+positiony);
+                frameHeight + positiony);
 
         spriteSheet = BitmapFactory.decodeResource(context.getResources(), R.drawable.ship2);
         bitmap = Bitmap.createScaledBitmap(spriteSheet,
@@ -65,7 +76,6 @@ public class SpriteSheetManager {
                 false);
 
     }
-
 
     public void getCurrentFrame() {
 
@@ -82,20 +92,15 @@ public class SpriteSheetManager {
         frameToDraw.right = frameToDraw.left + frameWidth;
     }
 
-    public void draw(Canvas canvas, Paint paint, int positionx, int positiony){
-
+    //must be updated to get current frames and current rect
+    public void update(int positionx, int positiony) {
         whereToDraw.set(
                 positionx,
                 positiony,
                 positionx + frameWidth,
-                frameHeight+positiony);
-        Log.d("frame height", ""+whereToDraw.height());
+                frameHeight + positiony);
+
         getCurrentFrame();
 
-        canvas.drawBitmap(
-                bitmap,
-                frameToDraw,
-                whereToDraw,
-                paint);
     }
 }
