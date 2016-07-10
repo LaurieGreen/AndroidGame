@@ -53,8 +53,8 @@ public class PlayerShip {
     private Rect hitBox;
 
     // Constructor
-    public PlayerShip(Context context, int screenX, int screenY) {
-
+    public PlayerShip(Context context, int screenX, int screenY)
+    {
         boosting = false;
         x = 50;
         y = 50;
@@ -72,18 +72,24 @@ public class PlayerShip {
 
     }
 
-    public void update() {
-        if (boosting) {
+    public void update()
+    {
+        if (boosting)
+        {
             speed += 2;
-        } else {
+        }
+        else
+        {
             speed -= 5;
         }
 
-        if (speed > MAX_SPEED) {
+        if (speed > MAX_SPEED)
+        {
             speed = MAX_SPEED;
         }
 
-        if (speed < MIN_SPEED) {
+        if (speed < MIN_SPEED)
+        {
             speed = MIN_SPEED;
         }
 
@@ -91,10 +97,13 @@ public class PlayerShip {
         y -= speed + GRAVITY;
 
         // Don't let ship stray off screen
-        if (y < minY) {
+        if (y < minY)
+        {
             y = minY;
         }
-        if (y > maxY) {
+
+        if (y > maxY)
+        {
             y = maxY;
         }
 
@@ -104,15 +113,24 @@ public class PlayerShip {
         hitBox.right = x + bitmap.getWidth();
         hitBox.bottom = y + bitmap.getHeight();
 
+        //update the animation manager to get updated frames and rect
+        //pass in players location
+        mSpriteSheetManager.update(x,y);
+
     }
 
-    public void draw(Canvas canvas, Paint paint){
-        //canvas.drawBitmap(bitmap, x, y, paint);
-        mSpriteSheetManager.draw(canvas, paint, x, y);
+    public void draw(Canvas canvas, Paint paint)
+    {
+        // gets the current frame and rect from the spritesheet manager object
+        canvas.drawBitmap(
+                mSpriteSheetManager.getBitmap(),
+                mSpriteSheetManager.getFrameToDraw(),
+                mSpriteSheetManager.getWhereToDraw(),
+                paint);
     }
 
-    public void setBoosting() {
-
+    public void setBoosting()
+    {
         boosting = true;
     }
 
@@ -120,29 +138,29 @@ public class PlayerShip {
         return boosting;
     }
 
-    public void stopBoosting() {
-
+    public void stopBoosting()
+    {
         boosting = false;
     }
 
     //Getters
-    public Bitmap getBitmap() {
-
+    public Bitmap getBitmap()
+    {
         return bitmap;
     }
 
-    public int getSpeed() {
-
+    public int getSpeed()
+    {
         return speed;
     }
 
-    public int getX() {
-
+    public int getX()
+    {
         return x;
     }
 
-    public int getY() {
-
+    public int getY()
+    {
         return y;
     }
 
@@ -150,8 +168,8 @@ public class PlayerShip {
         return hitBox;
     }
 
-    public int getShieldStrength() {
-
+    public int getShieldStrength()
+    {
         return shieldStrength;
     }
 
